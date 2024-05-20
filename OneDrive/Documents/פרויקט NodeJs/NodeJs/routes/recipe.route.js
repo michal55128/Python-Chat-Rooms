@@ -1,4 +1,6 @@
-const { addRecipe, getRecipesByUser, getAllRecipes, getRecipeById, getrecipesByPreparationTime } = require("../controllers/recipe.controller");
+const { addRecipe, getRecipesByUser, getAllRecipes, getRecipeById, getrecipesByPreparationTime,updateRecipe,deleteRecipe } = require("../controllers/recipe.controller");
+const express = require("express");
+const { auth } = require('../middlewares/auth');
 
 
 const router=express.Router();
@@ -6,9 +8,9 @@ router.post('/addRecipe',addRecipe);
 router.get('/:id',getRecipeById);
 router.get("/", getAllRecipes);
 router.get('/userId/:id',getRecipesByUser);
-router.get('/getrecipesByPreparationTime/:maxPreparationTime',getrecipesByPreparationTime);
+router.get('/getByTime/:maxTime',getrecipesByPreparationTime);
 router.put('/:id',auth,updateRecipe);
-router.deleteRecipe('/:id',auth,deleteRecipe);
+router.delete('/:id',auth,deleteRecipe);
 
 
 //האם לבדוק את הטוקן גם בהוספה או שרק בעדכון?
